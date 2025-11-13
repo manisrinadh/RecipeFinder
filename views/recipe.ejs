@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RECIPE FINDER</title>
+    <style>@import url("https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600;700&display=swap");
+
+      * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+        font-family: "Overpass", sans-serif;
+      }
+      body {
+        background-color: aliceblue;
+      }
+      body .mealSection {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      body .mealSection article {
+        padding: 2rem;
+        text-align: center;
+        padding-bottom: 1.5rem;
+      }
+      body .mealSection article header h1 {
+        font-size: 40px;
+      }
+      body .mealSection .formCont {
+        /* background-color: #2112; */
+        width: 80%;
+        max-width: 450px;
+      }
+      body .mealSection .formCont form {
+        display: grid;
+        grid-template-columns: 7% auto 20%;
+        align-items: center;
+        border: 1px solid #ced4da;
+        color: #212529;
+        border-radius: 0.25rem;
+        overflow: hidden;
+      }
+      body .mealSection .formCont form input {
+        padding: 0.375rem 0.75rem;
+        line-height: 1.5;
+        font-size: 1rem;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        margin-inline-start: 0;
+        padding-inline-start: 2px;
+      }
+      body .mealSection .formCont form .icon {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      body .mealSection .formCont form .icon ion-icon {
+        line-height: 1.5;
+        font-size: 1rem;
+        color: #afb6bd;
+      }
+      body .mealSection .formCont form button {
+        height: calc(100% + 1px);
+        background-color: #0a53be;
+        border: none;
+        outline: none;
+        color: #fff;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+      body .mealSection .searchText {
+        text-align: center;
+        padding: 1rem;
+        width: 100%;
+      }
+      body .mealSection .searchText h2 {
+        font-size: 1rem;
+        color: #5d6063;
+      }
+      body .mealSection .mealsCont {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+        width: 100%;
+        grid-gap: 1rem;
+        max-width: 1100px;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      body .mealSection .mealsCont .meal {
+        width: 18rem;
+        overflow: hidden;
+        border-radius: 0.35rem;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        background-color: #fff;
+        margin: 0% auto;
+        margin-top: 0.8rem;
+        position: relative;
+        height: 400px;
+        display: flex;
+        align-items: flex-end;
+      }
+      body .mealSection .mealsCont .meal .imgCont {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
+      body .mealSection .mealsCont .meal .imgCont img {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+        transition: 0.3s ease transform;
+      }
+      body .mealSection .mealsCont .meal:hover img {
+        transform: scale(1.05);
+      }
+      body .mealSection .mealsCont .meal .mealBody {
+        padding: 1.3rem;
+        transform: translateZ(10px);
+        position: relative;
+      }
+      body .mealSection .mealsCont .meal .mealBody::after {
+        content: "";
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-color: #0a53be;
+        top: 0%;
+        left: 0%;
+        z-index: -1;
+        background-color: #000;
+        opacity: 0.5;
+        filter: blur(5px);
+      }
+      body .mealSection .mealsCont .meal .mealBody h5 {
+        z-index: 15;
+        font-size: 1.3rem;
+        color: #fff;
+      }
+      body .mealSection .mealsCont .meal .mealBody p {
+        width: 100%;
+        line-height: 1.5;
+        color: #5d6063;
+        padding: 0.5rem 0;
+        max-height: 80px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color: rgb(230, 230, 230);
+      }
+      body .mealSection .mealsCont .meal .mealBody button {
+        background-color: #0d6efd;
+        border: none;
+        outline: none;
+        color: #fff;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 14px;
+        line-height: 1.5;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        margin-top: 0.5rem;
+      }
+      body .currentMealCont {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: auto !important;
+        display: flex;
+        justify-content: center;
+        z-index: 99;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      body .currentMealCont .currentMeal {
+        max-width: 500px;
+        background-color: #fff;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        margin-top: 3rem;
+        border-radius: 0.35rem;
+        height: max-content;
+        overflow: hidden;
+        margin-bottom: 3rem;
+        width: 90%;
+        position: relative;
+        z-index: 101;
+      }
+      body .currentMealCont .imgCont {
+        height: 220px;
+        width: 100%;
+      }
+      body .currentMealCont .imgCont img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+      body .currentMealCont .mealBody {
+        padding: 1rem 2rem;
+        padding-bottom: 2rem;
+      }
+      body .currentMealCont .mealBody h1 {
+        font-size: 2rem;
+        margin-left: -0.5rem;
+      }
+      body .currentMealCont .mealBody .ingridents {
+        margin-bottom: 0.8rem;
+      }
+      body .currentMealCont .mealBody .ingridents ul {
+        margin-left: 1.5rem;
+      }
+      body .currentMealCont .mealBody .ingridents ul li {
+        text-transform: capitalize;
+        font-size: 1rem;
+        line-height: 1.5;
+        text-align: left;
+      }
+      body .currentMealCont .mealBody .instruction p {
+        line-height: 1.5;
+      }
+      body .currentMealCont .mealBody .title {
+        font-size: 1.2rem;
+        padding: 0.3rem 0;
+      }
+      body .currentMealCont .currentMeal .youtube {
+        margin-top: 0.8rem;
+      }
+      body .currentMealCont .currentMeal .youtube a {
+        margin-top: 1rem;
+        display: block;
+        background-color: #0d6efd;
+        width: fit-content;
+        padding: 0.375rem 0.75rem;
+        color: #fff;
+        text-decoration: none;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        cursor: pointer;
+      }
+      
+      body.modal-open {
+        overflow: hidden;
+        padding-right: 17px;
+      }
+      body .currentMeal .close-btn {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        z-index: 100;
+        cursor: pointer;
+        display: flex;
+      }
+      body .currentMeal .close-btn ion-icon {
+        color: crimson;
+        font-size: 1.5rem;
+      }
+      #bgFood {
+        width: 100%;
+        max-width: 600px;
+        margin: 0% auto;
+      }
+      @media (max-width: 500px) {
+        body.modal-open {
+          overflow: hidden;
+          padding-right: 0;
+        }
+        .formCont form .icon {
+          margin-left: 5px;
+        }
+      }
+      </style>
+
+</head>
+<body>
+    <section class="mealSection">
+        <article>
+            <header>
+                <h1>Recipe Finder</h1>
+                <p>Food is ingredient that binds us togeather</p>
+            </header>
+        </article>
+        <div class="formCont">
+            <form id="form" class="form">
+                <div class="icon">
+                    <ion-icon name="search"></ion-icon>
+                </div>
+                <input type="text" placeholder="Enter the food name" id="userInput" autocomplete="off" />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="searchText">
+            <h2 id="searchName"></h2>
+        </div>
+        <div class="mealsCont" id="mealCont">
+          <img src="https://github.com/Dinesh1042/Vanilla-JavaScript-Projects/blob/main/Recipe%20Finder/asset/bg.png?raw=true" id="bgFood" alt="" />
+        </div>
+    </section>
+    <script>
+        const mealContEl = document.getElementById("mealCont");
+        const searchNameEl = document.getElementById("searchName");
+        const formEl = document.getElementById("form");
+        const userInputEl = document.getElementById("userInput");
+        const bodyEl = document.querySelector("body");
+
+        let modalCreate = false;
+
+        const baseUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+        const currentMealBaseUrl = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
+
+        function getRecipe(searchText) {
+            return fetch(baseUrl + searchText)
+                .then((res) => res.json())
+                .then((data) => {
+                    let mealArray = data.meals;
+                    mealContEl.innerHTML = ``;
+                    if (mealArray !== null) {
+                        searchNameEl.innerHTML = `Your Search result '${searchText}':`;
+                        mealArray.forEach((meal) => {
+                            let mealName = meal.strMeal;
+                            let mealImg = meal.strMealThumb;
+                            let mealIns = meal.strInstructions;
+                            let mealID = meal.idMeal;
+                            createMealElement(mealName, mealImg, mealIns, mealID);
+                        });
+                    } else {
+                        searchNameEl.innerHTML = `No Search found for '${searchText}' try again`;
+                    }
+                });
+        }
+
+        function createMealElement(mealName, mealImg, mealPara, mealID) {
+            const mealEl = document.createElement("div");
+            const attr = document.createAttribute("data-mealID");
+            attr.value = mealID;
+            mealEl.setAttributeNode(attr);
+            mealEl.classList.add("meal");
+            const imgCont = document.createElement("div");
+            imgCont.classList.add("imgCont");
+            const mealImgEl = document.createElement("img");
+            mealImgEl.src = mealImg;
+            imgCont.appendChild(mealImgEl);
+            mealEl.appendChild(imgCont);
+
+            const mealBody = document.createElement("div");
+            mealBody.classList.add("mealBody");
+            const mealNameEl = document.createElement("h5");
+            mealNameEl.innerHTML = mealName;
+            mealBody.appendChild(mealNameEl);
+            const mealParaEl = document.createElement("p");
+            mealParaEl.innerHTML = mealPara;
+            mealBody.appendChild(mealParaEl);
+            const ctaBtn = document.createElement("button");
+            ctaBtn.innerHTML = "Get Recipe";
+            mealBody.appendChild(ctaBtn);
+            mealEl.appendChild(mealBody);
+            mealContEl.appendChild(mealEl);
+
+            // Event listener
+            ctaBtn.addEventListener("click", (e) => {
+                if (!modalCreate) {
+                    getCurrentRecepie(attr.value);
+                    modalCreate = true;
+                }
+            });
+        }
+
+        const mealIngredient = [];
+
+        async function getCurrentRecepie(recipeId) {
+            const mealApi = await fetch(currentMealBaseUrl + recipeId);
+            const res = await mealApi.json();
+            const data = await res.meals[0];
+            for (let i = 1; i <= 20; i++) {
+                if (data[`strIngredient${i}`]) {
+                    let ingredient = data[`strIngredient${i}`];
+                    let measure = data[`strMeasure${i}`].trim();
+                    mealIngredient.push(`${ingredient} - ${measure}`);
+                }
+            }
+            createCurrentRecipeEl(data);
+        }
+
+        function createCurrentRecipeEl(data) {
+            bodyEl.classList.add("modal-open");
+
+            const currentMealCont = document.createElement("div");
+            currentMealCont.classList.add("currentMealCont");
+
+            const currentMeal = document.createElement("div");
+            currentMeal.classList.add("currentMeal");
+            currentMealCont.appendChild(currentMeal);
+
+            // Img Cont
+            const imgCont = document.createElement("div");
+            imgCont.classList.add("imgCont");
+
+            const imgEl = document.createElement("img");
+            imgEl.src = data.strMealThumb;
+
+            imgCont.appendChild(imgEl);
+            currentMeal.appendChild(imgCont);
+
+            // Meal body
+            const mealBody = document.createElement("div");
+            mealBody.classList.add("mealBody");
+            currentMeal.appendChild(mealBody);
+
+            const mealName = document.createElement("h1");
+            mealName.innerHTML = data.strMeal;
+            mealBody.appendChild(mealName);
+
+            const ingredients = document.createElement("div");
+            ingredients.classList.add("ingredients");
+            const ingTitle = document.createElement("p");
+            ingTitle.innerHTML = "Ingredients";
+            ingTitle.classList.add("title");
+            ingredients.appendChild(ingTitle);
+
+            const ulEl = document.createElement("ul");
+            ingredients.appendChild(ulEl);
+            mealIngredient.forEach((item) => {
+                const liEl = document.createElement("li");
+                liEl.innerHTML = item;
+                ulEl.appendChild(liEl);
+            });
+            mealBody.appendChild(ingredients);
+
+            // Instruction
+            const instructionEl = document.createElement("div");
+            instructionEl.classList.add("instruction");
+
+            const insTitle = document.createElement("p");
+            insTitle.classList.add("title");
+            insTitle.innerHTML = "Instruction";
+            instructionEl.appendChild(insTitle);
+
+            const insPara = document.createElement("p");
+            insPara.innerHTML = data.strInstructions;
+            instructionEl.appendChild(insPara);
+            mealBody.appendChild(instructionEl);
+
+            // YouTube link
+            const youtubeEl = document.createElement("div");
+            youtubeEl.classList.add("youtube");
+
+            const youtubePara = document.createElement("p");
+            youtubePara.innerHTML = `Click below to watch how to cook ${data.strMeal} on YouTube`;
+            youtubeEl.appendChild(youtubePara);
+
+            const watchLink = document.createElement("a");
+            watchLink.innerHTML = "Watch";
+            watchLink.href = data.strYoutube;
+            watchLink.target = "_blank";
+            youtubeEl.appendChild(watchLink);
+
+            mealBody.appendChild(youtubeEl);
+            bodyEl.appendChild(currentMealCont);
+
+            window.addEventListener("click", (e) => {
+                if (e.target === currentMealCont) {
+                    currentMealCont.remove();
+                    bodyEl.classList.remove("modal-open");
+                    modalCreate = false;
+                }
+            });
+
+            // Close Btn
+            const closeBtn = document.createElement("button");
+            closeBtn.innerHTML = `<ion-icon name="close"></ion-icon>`;
+            closeBtn.classList.add("close-btn");
+            currentMeal.appendChild(closeBtn);
+
+            closeBtn.addEventListener("click", (e) => {
+                currentMealCont.remove();
+                modalCreate = false;
+                bodyEl.classList.remove("modal-open");
+            });
+        }
+
+        formEl.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let mealName = userInputEl.value;
+            getRecipe(mealName);
+        });
+    </script>
+</body>
+</html>

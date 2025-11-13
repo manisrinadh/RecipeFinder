@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Finder</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/20c5629a29.js" crossorigin="anonymous"></script>
+<style>
+body {
+    background-color: #9fcaf4;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+   
+    background: lightblue url("/images/download.jpeg") no-repeat fixed center;
+    background-size: cover;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #7eb1e4;
+}
+
+.navbar-brand img {
+    height: 100px;
+    width: 100px;
+}
+
+.navbar .navbar-brand h1 {
+    font-size: 54px;
+    margin-left: 10px;
+    color: #0e0d0d;
+    font-style: oblique;
+}
+
+.navbar-nav .btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    margin: 5px;
+}
+
+.navbar-nav .btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-nav .btn:hover {
+    background-color: #0056b3;
+}
+
+.wcu-section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.wcu-section-heading {
+    font-size: 36px;
+    color: #cb1414;
+    margin-bottom: 20px;
+}
+
+.wcu-section-description {
+    font-size: 18px;
+    color: #16d69f;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.wcu-section ol {
+    list-style: none;
+    padding-left: 0;
+    color: rgb(232, 19, 23);
+}
+
+.wcu-section ol li {
+    font-size: 20px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.wcu-section ol li::before {
+    content: "✔";
+    margin-right: 10px;
+    color: #28a745;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.content-wrapper {
+    padding-top: 100px; /* Adjusted for fixed navbar */
+}
+
+.a {
+    color: #cb1414;
+}
+</style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="/images/pic.webp" class="img" alt="Description of Image">
+
+                <h1>Recipe Finder</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <button class="btn">
+                        <a href="http://localhost:2000/login" id="navItem1">Login</a>
+                    </button>
+                    <button class="btn">
+                        <a href="http://localhost:2000/signup" id="navItem4">Sign Up</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="wcu-section pt-5 pb-5" id="wcuSection">
+            <div class="container">
+                <h1 class="wcu-section-heading">Why Choose Us?</h1>
+                <p class="wcu-section-description">
+                    A Recipe Finder is a web or mobile application designed to help users discover, search, and manage a variety of recipes based on their preferences, dietary needs, and available ingredients. The app aims to simplify meal planning by offering a user-friendly interface where users can explore new recipes, save their favorites, and customize their search according to specific criteria such as cuisine type, cooking time, and nutritional values.
+                </p>
+                <h1 class="a">Key Features</h1>
+                <ol>
+                    <li>Recipe Search</li>
+                    <li>Ingredient-Based Search</li>
+                    <li>Recipe Details</li>
+                    <li>User Accounts and Personalization</li>
+                    <li>Provides instructions</li>
+                    <li>Detailed videos</li>
+                    <li>Mobile and Web application</li>
+                    <li>Security</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
